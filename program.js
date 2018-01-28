@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-app.get("/home", (req, res) => {
-  res.end("Hello World!");
-});
+app.use(express.static(process.argv[3]));
 
 app.listen(process.argv[2]);
