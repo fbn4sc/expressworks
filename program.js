@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const fs = require("fs");
 const bodyparser = require("body-parser");
 
 app.use(
@@ -48,6 +49,15 @@ app.put("/message/:id", (req, res) => {
 
 app.get("/search", (req, res) => {
   res.end(JSON.stringify(req.query));
+});
+
+app.get("/books", (req, res) => {
+  fs.readFile(process.argv[3], "utf8", (err, data) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    res.json(JSON.parse(data));
+  });
 });
 
 app.listen(process.argv[2]);
