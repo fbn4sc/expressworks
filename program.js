@@ -46,4 +46,8 @@ app.put("/message/:id", (req, res) => {
   );
 });
 
+app.get("/search", (req, res) => {
+  res.end(JSON.stringify(req.query));
+});
+
 app.listen(process.argv[2]);
